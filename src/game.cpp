@@ -5077,6 +5077,9 @@ bool game::revive_corpse( const tripoint &p, item &it )
 
     critter.no_extra_death_drops = true;
     critter.add_effect( effect_downed, 5_turns, num_bp, true );
+    for( const item *it : it.contents.all_items_top() ) {
+        critter.corpse_contents.push_back( *it );
+    }
 
     if( it.get_var( "zlave" ) == "zlave" ) {
         critter.add_effect( effect_pacified, 1_turns, num_bp, true );
