@@ -287,7 +287,7 @@ void bionic_data::load( const JsonObject &jsobj, const std::string )
         // clear data first so that copy-from can override it
         stat_bonus.clear();
         for( JsonArray ja : jsobj.get_array( "stat_bonus" ) ) {
-            stat_bonus.emplace( io::string_to_enum<Character::stat>( ja.get_string( 0 ) ),
+            stat_bonus.emplace( io::string_to_enum<character_stat>( ja.get_string( 0 ) ),
                                 ja.get_int( 1 ) );
         }
     }
@@ -328,14 +328,6 @@ void bionic_data::load( const JsonObject &jsobj, const std::string )
         for( JsonArray ja : jsobj.get_array( "cut_protec" ) ) {
             cut_protec.emplace( bodypart_str_id( ja.get_string( 0 ) ),
                                 ja.get_int( 1 ) );
-        }
-    }
-    if( jsobj.has_array( "bullet_protec" ) ) {
-        // clear data first so that copy-from can override it
-        bullet_protec.clear();
-        for( JsonArray ja : jsobj.get_array( "bullet_protec" ) ) {
-            bullet_protec.emplace( bodypart_str_id( ja.get_string( 0 ) ),
-                                   ja.get_int( 1 ) );
         }
     }
 
